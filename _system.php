@@ -25,4 +25,3 @@ function __autoload( $class ) {
 function autoRun(){
     class_lib\Controller\FrontController::run();
 }
-

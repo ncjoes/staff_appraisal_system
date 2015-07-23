@@ -56,7 +56,17 @@ $base_command = "ListQualifications";
             <td colspan="2" class="button_row">
 	            <a href="?cmd=<?= $base_command; ?>&action=Edit&qualification_id=<?= $qualification->getId(); ?>">Edit</a>
 	            |
-                <a href="?cmd=<?= $base_command; ?>&action=Delete&qualification_id=<?= $qualification->getId(); ?>">Delete</a>
+                <?php
+                if($qualification->getStatus()=="Deleted"){
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=undoDelete&qualification_id=<?= $qualification->getId(); ?>">Undo Delete</a>
+                    <?php
+                }else{
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=Delete&qualification_id=<?= $qualification->getId(); ?>">Delete</a>
+                    <?php
+                }
+                ?>
 	            <br/><br/>
             </td>
         </tr>

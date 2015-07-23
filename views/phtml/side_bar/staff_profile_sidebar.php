@@ -22,7 +22,7 @@ $user = $context->getUser();
 	</ul>
 </div>
 <div class="side_bar_links_container">
-	<span class="link_group_label">Update &hellip;</span>
+	<span class="link_group_label">Update Profile &hellip;</span>
 	<ul class="side_bar_links">
 		<li><a href="?cmd=UpdatePersonalData"> Personal Data </a></li>
 		<li><a href="?cmd=ListQualifications"> Qualifications </a></li>
@@ -31,4 +31,9 @@ $user = $context->getUser();
 		<li><a href="?cmd=UpdateBiography"> About Me </a></li>
 	</ul>
 </div>
-
+<div class="side_bar_links_container">
+	<span class="link_group_label">Account Settings &hellip;</span>
+	<ul class="side_bar_links">
+		<li><a href="?cmd=ChangePassword"> Change Password </a></li>
+	</ul>
+</div>

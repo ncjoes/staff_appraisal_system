@@ -64,7 +64,17 @@ $base_command = "ListPublications";
             <td colspan="2" class="button_row">
                 <a href="?cmd=<?= $base_command; ?>&action=Edit&publication_id=<?= $publication->getId(); ?>">Edit</a>
                 |
-                <a href="?cmd=<?= $base_command; ?>&action=Delete&publication_id=<?= $publication->getId(); ?>">Delete</a>
+                <?php
+                if($publication->getStatus()=="Deleted"){
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=undoDelete&publication_id=<?= $publication->getId(); ?>">Undo Delete</a>
+                    <?php
+                }else{
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=Delete&publication_id=<?= $publication->getId(); ?>">Delete</a>
+                    <?php
+                }
+                ?>
                 <br/><br/>
             </td>
         </tr>

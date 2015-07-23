@@ -37,7 +37,7 @@ $user = $request_context->getUser();
         <td id="menu_container">
 	        <?php
 	        try{
-		        include("views/php/menu_bar/{$request_context->getMenuView()}.php");
+		        include("views/phtml/menu_bar/{$request_context->getMenuView()}.php");
 	        }catch(\Exception $e){
 		        print $e->getMessage();
 	        }
@@ -49,7 +49,7 @@ $user = $request_context->getUser();
         <td id="sidebar_container" valign="top">
             <?php
             try{
-	            include("views/php/side_bar/{$request_context->getSidebarView()}.php");
+	            include("views/phtml/side_bar/{$request_context->getSidebarView()}.php");
             }catch(\Exception $e){
 	            print $e->getMessage();
             }
@@ -59,7 +59,7 @@ $user = $request_context->getUser();
             <?php
             try{
 	            foreach($request_context->getContentViews() as $view){
-		            include("views/php/content_area/{$view}.php");
+		            include("views/phtml/content_area/{$view}.php");
 	            }
             }catch(\Exception $e){
 	            print $request_context->getResponseError();

@@ -14,6 +14,12 @@ $user = $context->getUser();
 </div>
 <hr/>
 <div class="side_bar_links_container">
+	<span class="link_group_label">Control Panel &hellip;</span>
+	<ul class="side_bar_links">
+		<li><a href="?cmd=AdminDashboard"> Dashboard </a></li>
+	</ul>
+</div>
+<div class="side_bar_links_container">
 	<span class="link_group_label">Update Reviews &hellip;</span>
 	<ul class="side_bar_links">
 		<li><a href="?cmd=ReviewQualifications"> Qualifications </a></li>

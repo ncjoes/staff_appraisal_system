@@ -67,10 +67,16 @@ class RequestContext {
 
     function addCommand($command){
         $this->request_command[] = $command;
+        return $this;
     }
 
     function getCommandChain(){
         return $this->request_command;
+    }
+
+    function resetCommandChain(){
+        $this->request_command = array();
+        return $this;
     }
 
     function isExecutable(){

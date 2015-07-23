@@ -26,12 +26,17 @@ class ListQualificationsCommand extends EmployeeCommand{
 			        $subCommand->execute($requestContext);
 		        } break;
 		        case "Delete":{
-					$mapper = MapperRegistry::getMapper("Qualification");
+			        $mapper = MapperRegistry::getMapper("Qualification");
 			        $qualification_obj = $mapper->find($id);
 			        if(is_object($qualification_obj)){
 				        $qualification_obj->delete();
-				        //$user = $requestContext->getUser();
-				        //$user->remove_qualification($qualification_obj);
+			        }
+		        } break;
+		        case "undoDelete":{
+			        $mapper = MapperRegistry::getMapper("Qualification");
+			        $qualification_obj = $mapper->find($id);
+			        if(is_object($qualification_obj)){
+				        $qualification_obj->markPending();
 			        }
 		        } break;
 	        }

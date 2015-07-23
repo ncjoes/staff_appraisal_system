@@ -62,7 +62,7 @@ $request_context = class_lib\controller\RequestContext::instance();
 	        <?php
 	        try{
 		        foreach($request_context->getContentViews() as $view){
-			        include("views/php/content_area/{$view}.php");
+			        include("views/phtml/content_area/{$view}.php");
 		        }
 	        }catch(\Exception $e){
 		        print $request_context->getResponseError();

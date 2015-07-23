@@ -27,32 +27,44 @@ class FrontController {
         $applicationHelper->init();
     }
 
+	private function r_run(RequestContext $requestContext, $cmd_resolver, $start=0){
+		//recursively run commands in a dynamic array
+		$cmd_chain = $requestContext->getCommandChain();
+		if(isset($cmd_chain[$start])){
+			$cmd_resolver->getCommand( $cmd_chain[$start] )->execute( $requestContext );
+			$this->r_run($requestContext, $cmd_resolver, ++$start);
+		}
+	}
+
     function handleRequest() {
 	    $requestContext = RequestContext::instance();
         try{
-	        //recursively run commands in a dynamic array
-	        function r_run($requestContext, $cmd_resolver, $start=0){
-		        $cmd_chain = $requestContext->getCommandChain();
-		        if(isset($cmd_chain[$start])){
-			        $cmd_resolver->getCommand( $cmd_chain[$start] )->execute( $requestContext );
-			        r_run($requestContext, $cmd_resolver, ++$start);
-		        }
-	        }
-
 	        $cmd_resolver = new Command\CommandResolver();
-	        r_run( $requestContext, $cmd_resolver);
+	        $this->r_run( $requestContext, $cmd_resolver);
 	        domain\DomainObjectWatcher::instance()->performOperations();
 
         }catch (Exceptions\CommandNotFoundException $exception){
+	        ///*
+	        //development mode
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage());
-            //print_r($exception); exit;
+	        //*/
+
+	        /*
+	        //deployment mode
+	        $requestContext->resetCommandChain();
+            $requestContext->addCommand("Default");
+	        $this->handleRequest();
+	        //*/
+
         }catch (Exceptions\FormFieldNotFoundException $exception){
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage());
+
         }catch (\PDOException $exception){
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage()."<br/>".$exception->getTraceAsString());
+
         }catch (\Exception $exception){
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage());

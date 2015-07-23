@@ -52,7 +52,17 @@ $base_command = "ListSupervisions";
             <td colspan="2" class="button_row">
                 <a href="?cmd=<?= $base_command; ?>&action=Edit&supervision_id=<?= $supervision->getId(); ?>">Edit</a>
                 |
-                <a href="?cmd=<?= $base_command; ?>&action=Delete&supervision_id=<?= $supervision->getId(); ?>">Delete</a>
+                <?php
+                if($supervision->getStatus()=="Deleted"){
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=undoDelete&supervision_id=<?= $supervision->getId(); ?>">Undo Delete</a>
+                    <?php
+                }else{
+                    ?>
+                    <a href="?cmd=<?= $base_command; ?>&action=Delete&supervision_id=<?= $supervision->getId(); ?>">Delete</a>
+                    <?php
+                }
+                ?>
                 <br/><br/>
             </td>
         </tr>

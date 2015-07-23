@@ -30,8 +30,13 @@ class ListSupervisionsCommand extends StaffCommand{
                     $supervision_obj = $mapper->find($id);
                     if(is_object($supervision_obj)){
                         $supervision_obj->delete();
-                        //$user = $requestContext->getUser();
-                        //$user->remove_supervision($supervision_obj);
+                    }
+                } break;
+                case "undoDelete":{
+                    $mapper = MapperRegistry::getMapper("Supervision");
+                    $supervision_obj = $mapper->find($id);
+                    if(is_object($supervision_obj)){
+                        $supervision_obj->markPending();
                     }
                 } break;
             }

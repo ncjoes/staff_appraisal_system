@@ -30,8 +30,13 @@ class ListPublicationsCommand extends StaffCommand{
                     $publication_obj = $mapper->find($id);
                     if(is_object($publication_obj)){
                         $publication_obj->delete();
-                        //$user = $requestContext->getUser();
-                        //$user->remove_publication($publication_obj);
+                    }
+                } break;
+                case "undoDelete":{
+                    $mapper = MapperRegistry::getMapper("Publication");
+                    $publication_obj = $mapper->find($id);
+                    if(is_object($publication_obj)){
+                        $publication_obj->markPending();
                     }
                 } break;
             }
