@@ -6,8 +6,6 @@
  * Date: 7/20/2015
  * Time: 2:18 AM
  */
-$context = \class_lib\controller\RequestContext::instance();
-$user = $context->getUser();
 ?>
 <div class="passport_photo">
 	<img src="views/img/dashboard.jpg" alt="Dashboard" align="middle"/>

@@ -18,6 +18,7 @@ class CommandResolver {
         if ( preg_match( '/\W/', $action ) ) {
             throw new Exception("illegal characters in action");
         }
+        $action = strlen($action) ? $action : "Default";
         $class_name = UCFirst($action)."Command";
         $file = (!empty(self::$dir)) ? self::$dir.DIRECTORY_SEPARATOR."{$class_name}.php" : "{$class_name}.php";
         if ( ! file_exists( $file ) ){

@@ -208,7 +208,7 @@ fieldset legend{
     text-align: right;
     padding-right: 8%;
 }
-.button_row input[type=submit]{
+.button_row input[type=submit], .button_row input[type=reset]{
     padding: 1%;
     font-weight: 600;
     background-color: lightblue;
@@ -216,7 +216,10 @@ fieldset legend{
     border: 1px solid #272727;
 }
 .button_row input[type=submit]:hover{
-    background-color: blue;
+    background-color: darkgreen;
+}
+.button_row input[type=reset]:hover{
+    background-color: mediumslateblue;
 }
 
 /*Site Banner on Welcome Page*/

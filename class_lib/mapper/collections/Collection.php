@@ -19,7 +19,6 @@ abstract class Collection implements \Iterator {
     protected $mapper;
     protected $total = 0;
     protected $raw = array();
-    private $result;
     private $pointer = 0;
     private $objects = array();
 

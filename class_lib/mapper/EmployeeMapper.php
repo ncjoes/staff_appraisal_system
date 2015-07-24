@@ -19,11 +19,11 @@ abstract class EmployeeMapper extends Mapper{
 		$this->selectAllStmt = self::$PDO->prepare("SELECT * FROM employees");
 		$this->insertStmt = self::$PDO->prepare("INSERT INTO employees
           (employeeId,firstname,lastname,othernames,gender,date_of_birth,nationality,state_of_origin,
-          lga,employment_date,retirement_date)
-          VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+          lga,employment_date,retirement_date,rank)
+          VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 		$this->updateStmt = self::$PDO->prepare("UPDATE employees SET employeeId=?,firstname=?,lastname=?,othernames=?,
 			gender=?,date_of_birth=?,nationality=?,state_of_origin=?,lga=?,
-			employment_date=?,retirement_date=?,staff_level=?,biography=? WHERE id=?");
+			employment_date=?,retirement_date=?,rank=?,biography=? WHERE id=?");
 		$this->deleteStmt = self::$PDO->prepare("DELETE FROM employees WHERE id=?");
 	}
 
@@ -44,7 +44,7 @@ abstract class EmployeeMapper extends Mapper{
 		$obj->set_employment_date(new Date($doe[1], $doe[2], $doe[0]));
 		$dor = explode('-', $array['retirement_date']);
 		$obj->set_retirement_date(new Date($dor[1], $dor[2], $dor[0]));
-		$obj->setEmployeeLevel($array['staff_level']);
+		$obj->setRank($array['rank']);
 		$obj->setBiography($array['biography']);
 
 		return $obj;
@@ -62,7 +62,8 @@ abstract class EmployeeMapper extends Mapper{
 			$object->get_state_of_origin(),
 			$object->get_lga(),
 			$object->get_employment_date()->toStr(),
-			$object->get_retirement_date()->toStr()
+			$object->get_retirement_date()->toStr(),
+			"assistant_lecturer"//$object->getRank()->getRankID()
 		);
 
 		return $values;
@@ -81,7 +82,7 @@ abstract class EmployeeMapper extends Mapper{
 			$object->get_lga(),
 			$object->get_employment_date()->toStr(),
 			$object->get_retirement_date()->toStr(),
-			$object->getEmployeeLevel(),
+			$object->getRank()->getRankID(),
 			$object->getBiography(),
 			$object->getId()
 		);

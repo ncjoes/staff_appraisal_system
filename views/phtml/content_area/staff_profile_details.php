@@ -68,7 +68,7 @@ $user = $request_context->getUser();
     </tr>
     <tr>
         <td class="output_label">Rank</td>
-        <td class="output_value"><?= $user->getRank(); ?></td>
+        <td class="output_value"><?= $user->getRank()->getTitle(); ?></td>
     </tr>
     <tr>
         <td class="output_label">Date of Employment</td>

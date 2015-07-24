@@ -20,6 +20,7 @@ abstract class Mapper {
             $dsn = utilities\ApplicationRegistry::getDSN();
             $user = utilities\ApplicationRegistry::getDbUser();
             $password = utilities\ApplicationRegistry::getDbUserPassword();
+
             if ( is_null( $dsn ) ) {
                 throw new \Exception( "No DSN" );
             }
@@ -43,12 +44,12 @@ abstract class Mapper {
 
     function findAll( ) {
         $this->selectAllStmt()->execute( array() );
-        return $this->getCollection($this->selectAllStmt()->fetchAll( PDO::FETCH_ASSOC ) );
+        return $this->getCollection($this->selectAllStmt()->fetchAll( \PDO::FETCH_ASSOC ) );
     }
 
     function createObject( $array ) {
         $old = $this->getFromMap( $array['id']);
-        if ( $old ) { return $old; }
+        if ( is_object($old) ) { return $old; }
         //construct object
         $obj = $this->doCreateObject( $array );
         //keep record of object
@@ -73,11 +74,11 @@ abstract class Mapper {
         $domainObject->markClean();
     }
 
-    private function getFromMap( $id ) {
+    protected function getFromMap( $id ) {
         return domain\DomainObjectWatcher::exists( $this->targetClass(), $id );
     }
 
-    private function addToMap( domain\DomainObject $obj ) {
+    protected function addToMap( domain\DomainObject $obj ) {
         domain\DomainObjectWatcher::add( $obj );
     }
 

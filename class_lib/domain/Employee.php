@@ -18,7 +18,7 @@ abstract class Employee extends Person{
     private $access_data;
     private $employment_date;
     private $retirement_date;
-    private $employee_level;
+    private $rank;
     private $qualifications;
 
     function __construct($id){
@@ -77,13 +77,14 @@ abstract class Employee extends Person{
         $qualification->markDelete();
     }
 
-    function setEmployeeLevel($level){
-        $this->employee_level = $level;
-    }
-    function getEmployeeLevel(){
-        return $this->employee_level;
+    function setRank($rank){
+        $this->rank = $rank;
     }
     function getRank(){
-        return $this->employee_level;
+        if(!is_object($this->rank)){
+            $mapper = MapperRegistry::getMapper(get_class($this)."Rank");
+            $this->rank = $mapper->findByRankID( $this->rank );
+        }
+        return $this->rank;
     }
 }

@@ -7,9 +7,9 @@
  * Time: 3:47 PM
  */
 
-$request = \class_lib\Controller\RequestContext::instance();
-$state = $request->getResponseData()[0];
-$publications = $request->getResponseData()[1];
+$requestContext = \class_lib\Controller\RequestContext::instance();
+$state = $requestContext->getResponseData()[0];
+$publications = $requestContext->getResponseData()[1];
 $base_command = "ReviewPublications";
 ?>
 <input type="hidden" value="execute"/>
@@ -21,8 +21,8 @@ $base_command = "ReviewPublications";
     </thead>
     <tr>
         <td class="button_row" colspan="3">
-	        <p class="<?= $context->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
-		        <?= $context->getResponseError(); ?>
+	        <p class="<?= $requestContext->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
+		        <?= $requestContext->getResponseError(); ?>
 	        </p>
             <a href="?cmd=<?= $base_command; ?>&state=Pending">Pending</a> |
             <a href="?cmd=<?= $base_command; ?>&state=Approved">Approved</a> |

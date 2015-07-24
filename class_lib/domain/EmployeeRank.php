@@ -3,8 +3,8 @@
  * Phoenix Laboratories NG.
  * Author: N. C. Joseph (phoenixlabs.ng@gmail.com)
  * Project: staff_portal
- * Date: 7/20/2015
- * Time: 1:32 AM
+ * Date: 7/23/2015
+ * Time: 8:57 PM
  */
 
 namespace class_lib\domain;
@@ -12,27 +12,33 @@ namespace class_lib\domain;
 
 class EmployeeRank extends DomainObject
 {
-	private $rankNum;
+	private $rankID;
+	private $rankOrder;
 	private $title;
-	private $minQualification;
-	private $minYearOfService;
-	private $minNumOfSupervisions;
-	private $minNumOfPublications;
-	private $minScopusIndexes;
-	private $minThompsonIndexes;
 
-	function __construct($id){
+	function __construct($id=null){
 		parent::__construct($id);
 	}
 
-	public function getRankNum()
+	public function getRankID()
 	{
-		return $this->rankNum;
+		return $this->rankID;
 	}
 
-	public function setRankNum($rankNum)
+	public function setRankID($rankID)
 	{
-		$this->rankNum = $rankNum;
+		$this->rankID = $rankID;
+		$this->markDirty();
+		return $this;
+	}
+
+	public function getOrder(){
+		return $this->rankOrder;
+	}
+
+	public function setOrder($order){
+		$this->rankOrder = (int)$order;
+		$this->markDirty();
 		return $this;
 	}
 
@@ -44,72 +50,7 @@ class EmployeeRank extends DomainObject
 	public function setTitle($title)
 	{
 		$this->title = $title;
-		return $this;
-	}
-
-	public function getMinQualification()
-	{
-		return $this->minQualification;
-	}
-
-	public function setMinQualification($minQualification)
-	{
-		$this->minQualification = $minQualification;
-		return $this;
-	}
-
-	public function getMinYearOfService()
-	{
-		return $this->minYearOfService;
-	}
-
-	public function setMinYearOfService($minYearOfService)
-	{
-		$this->minYearOfService = $minYearOfService;
-		return $this;
-	}
-
-	public function getMinNumOfSupervisions()
-	{
-		return $this->minNumOfSupervisions;
-	}
-
-	public function setMinNumOfSupervisions($minNumOfSupervisions)
-	{
-		$this->minNumOfSupervisions = $minNumOfSupervisions;
-		return $this;
-	}
-
-	public function getMinNumOfPublications()
-	{
-		return $this->minNumOfPublications;
-	}
-
-	public function setMinNumOfPublications($minNumOfPublications)
-	{
-		$this->minNumOfPublications = $minNumOfPublications;
-		return $this;
-	}
-
-	public function getMinScopusIndexes()
-	{
-		return $this->minScopusIndexes;
-	}
-
-	public function setMinScopusIndexes($minScopusIndexes)
-	{
-		$this->minScopusIndexes = $minScopusIndexes;
-		return $this;
-	}
-
-	public function getMinThompsonIndexes()
-	{
-		return $this->minThompsonIndexes;
-	}
-
-	public function setMinThompsonIndexes($minThompsonIndexes)
-	{
-		$this->minThompsonIndexes = $minThompsonIndexes;
+		$this->markDirty();
 		return $this;
 	}
 

@@ -66,10 +66,7 @@ $user = $request_context->getUser();
         <td class="output_label">Staff ID</td>
         <td class="output_value"><?= $user->get_employeeId(); ?></td>
     </tr>
-    <tr>
-        <td class="output_label">Rank</td>
-        <td class="output_value"><?= $user->getRank(); ?></td>
-    </tr>
+
     <tr>
         <td class="output_label">Date of Employment</td>
         <td class="output_value"><?= $user->get_employment_date()->toStr(); ?></td>

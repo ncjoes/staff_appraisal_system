@@ -10,8 +10,7 @@
 namespace class_lib\mapper;
 
 use \class_lib\domain;
-use \class_lib\mapper\collections\QualificationCollection;
-use \class_lib\utilities\Date;
+use class_lib\mapper\collections\SupervisionCollection;
 
 class SupervisionMapper extends Mapper{
     function __construct() {
@@ -43,7 +42,7 @@ class SupervisionMapper extends Mapper{
     }
 
     function getCollection( array $raw ) {
-        return new QualificationCollection( $raw, $this );
+        return new SupervisionCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ){
