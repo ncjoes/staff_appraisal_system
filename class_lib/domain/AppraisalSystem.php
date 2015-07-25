@@ -11,18 +11,18 @@ namespace class_lib\domain;
 
 use class_lib\mapper\MapperRegistry;
 
-class AppraisalSystem {
+abstract class AppraisalSystem {
 
-	private function getEmployeeType($employeeId){
+	private static function getEmployeeType($employeeId){
 		$accessDataMapper = MapperRegistry::getMapper("AccessData");
 		$accessDataObject = $accessDataMapper->find($employeeId);
 		$employeeType = $accessDataObject->getUserType();
 		return $employeeType;
 	}
 
-	function review($employeeId){
+	public static function review($employeeId){
 		//1. Get Employee-Object Type
-		$employeeType = $this->getEmployeeType($employeeId);
+		$employeeType = self::getEmployeeType($employeeId);
 
 		//2. Get Employee Object
 		$employeeObjectMapper = MapperRegistry::getMapper($employeeType);
@@ -43,7 +43,7 @@ class AppraisalSystem {
 						$employeeObject->getNumOfScopusIndexes() >= $rank->getMinScopusIndexes() and
 						$employeeObject->getNumOfThompsonIndexes() >= $rank->getMinThompsonIndexes()
 					){
-						$employeeObject->setRank($rank->getRankID());
+						$employeeObject->setRank($rank->getRankID()); print_r($employeeObject);
 						break;
 					}
 				}

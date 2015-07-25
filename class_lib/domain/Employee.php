@@ -30,18 +30,27 @@ abstract class Employee extends Person{
     }
     function set_employeeId($id){
         $this->employeeId = $id;
+        $this->markDirty();
+        return $this;
     }
 
     function set_access_data(AccessData $accessData){
         $this->access_data = $accessData;
+        $this->markDirty();
+        return $this;
     }
     function get_access_data(){
+        if(!isset($this->access_data)){
+            $mapper = MapperRegistry::getMapper("AccessData");
+            $this->access_data = $mapper->find($this->get_employeeId());
+        }
         return $this->access_data;
     }
 
     function set_employment_date(utilities\Date $date){
         $this->employment_date = $date;
         $this->markDirty();
+        return $this;
     }
     function get_employment_date(){
         return $this->employment_date;
@@ -50,6 +59,7 @@ abstract class Employee extends Person{
     function set_retirement_date(utilities\Date $date){
         $this->retirement_date = $date;
         $this->markDirty();
+        return $this;
     }
     function get_retirement_date(){
         return $this->retirement_date;
@@ -70,6 +80,7 @@ abstract class Employee extends Person{
             $qualification->setStaffId($this->employeeId);
         }
         $this->qualifications = $qualifications;
+        return $this;
     }
 
     function get_qualifications(){
@@ -81,7 +92,7 @@ abstract class Employee extends Person{
     }
 
     function add_qualification(Qualification $qualification){
-        $qualification->setStaffId($this);
+        $qualification->setStaffId($this->get_employeeId());
 	    $this->get_qualifications()->add($qualification);
     }
 
@@ -113,9 +124,11 @@ abstract class Employee extends Person{
 	    return $this;
     }
     function getRank(){
-        if(!is_object($this->rank)){
+        if(!is_object($this->rank) and strlen($this->rank)){
             $mapper = MapperRegistry::getMapper(get_class($this)."Rank");
             $this->rank = $mapper->findByRankID( $this->rank );
+        }elseif(!is_object($this->rank) and !strlen($this->rank)){
+	        throw new \Exception("Rank not set");
         }
         return $this->rank;
     }

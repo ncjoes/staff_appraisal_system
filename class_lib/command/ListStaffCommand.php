@@ -3,8 +3,8 @@
  * Phoenix Laboratories NG.
  * Author: N. C. Joseph (phoenixlabs.ng@gmail.com)
  * Project: staff_portal
- * Date: 7/23/2015
- * Time: 10:43 PM
+ * Date: 7/25/2015
+ * Time: 12:24 PM
  */
 
 namespace class_lib\command;
@@ -12,13 +12,13 @@ namespace class_lib\command;
 use \class_lib\controller;
 use \class_lib\mapper\MapperRegistry;
 
-class ListTutorialStaffRanksCommand extends RankSettingsCommand{
+class ListStaffCommand extends AdminCommand{
 	protected function doExecute(controller\RequestContext $requestContext){
-		parent::doExecute($requestContext);
 
-		$requestContext->addContentView("tutorial_staff_ranks_list_editor");
+		$requestContext->setSidebarView("admin_staff_list_sidebar");
+		$requestContext->addContentView("tutorial_staff_list_editor");
 
-		$mapper = MapperRegistry::getMapper("TutorialStaffRank");
+		$mapper = MapperRegistry::getMapper("TutorialStaff");
 		$requestContext->setResponseData($mapper->findAll());
 	}
 }

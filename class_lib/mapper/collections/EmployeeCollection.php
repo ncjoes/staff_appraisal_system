@@ -10,10 +10,5 @@
 namespace class_lib\mapper\collections;
 
 
-class EmployeeCollection extends Collection{
-
-    function targetClass(){
-        return "class_lib\\domain\\Employee";
-
-    }
+abstract class EmployeeCollection extends Collection{
 }

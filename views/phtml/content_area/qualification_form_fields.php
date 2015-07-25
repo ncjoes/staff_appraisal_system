@@ -33,7 +33,7 @@
 	</select>
 	<input name="date_d" id="date_d" type="number" min="1" max="31"
 	       value="<?= $qualification->getDateObtained()->get_day(); ?>" placeholder="Day"/>
-	<input name="date_y" id="date_d" type="number" min="1900" max="2100"
+	<input name="date_y" id="date_y" type="number" min="1900" max="2100"
 	       value="<?= $qualification->getDateObtained()->get_year(); ?>" placeholder="year"/>
 </p>
 <p class="input_row">

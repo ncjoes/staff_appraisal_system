@@ -18,8 +18,8 @@ class AccessDataMapper extends Mapper {
         $this->selectStmt = self::$PDO->prepare("SELECT * FROM access_data WHERE user_id = ? ");
         $this->selectAllStmt = self::$PDO->prepare("SELECT * FROM access_data");
         $this->insertStmt = self::$PDO->prepare(
-            "INSERT INTO access_data (id, user_id, password, user_type, is_suspended, is_deleted)
-              VALUES (NULL , ?, ?, ?, ?, ?);");
+            "INSERT INTO access_data (user_id, password, user_type, is_suspended, is_deleted)
+              VALUES ( ?, ?, ?, ?, ?);");
         $this->updateStmt = self::$PDO->prepare(
             "UPDATE access_data SET user_id=?, password=?, is_suspended=?, is_deleted=? WHERE id=?");
         $this->deleteStmt = self::$PDO->prepare("DELETE FROM access_data WHERE id=?");
@@ -40,7 +40,7 @@ class AccessDataMapper extends Mapper {
     }
 
     protected function doInsert( domain\DomainObject $object ) {
-        $values = array( NULL, $object->getUsername(), $object->getPassword(), $object->getUserType(), 0, 0 );
+        $values = array( $object->getUsername(), $object->getPassword(), $object->getUserType(), 0, 0 );
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );

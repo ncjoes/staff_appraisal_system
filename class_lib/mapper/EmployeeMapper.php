@@ -20,7 +20,7 @@ abstract class EmployeeMapper extends Mapper{
 		$this->insertStmt = self::$PDO->prepare("INSERT INTO employees
           (employeeId,firstname,lastname,othernames,gender,date_of_birth,nationality,state_of_origin,
           lga,employment_date,retirement_date,rank)
-          VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+          VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 		$this->updateStmt = self::$PDO->prepare("UPDATE employees SET employeeId=?,firstname=?,lastname=?,othernames=?,
 			gender=?,date_of_birth=?,nationality=?,state_of_origin=?,lga=?,
 			employment_date=?,retirement_date=?,rank=?,biography=? WHERE id=?");
@@ -61,8 +61,8 @@ abstract class EmployeeMapper extends Mapper{
 			$object->get_nationality(),
 			$object->get_state_of_origin(),
 			$object->get_lga(),
-			$object->get_employment_date()->toStr(),
-			$object->get_retirement_date()->toStr(),
+			$object->get_employment_date(),
+			$object->get_retirement_date(),
 			"assistant_lecturer"//$object->getRank()->getRankID()
 		);
 
@@ -99,7 +99,7 @@ abstract class EmployeeMapper extends Mapper{
 	}
 
 	function selectAllStmt() {
-		return $this->selectStmt;
+		return $this->selectAllStmt;
 	}
 
 	function insertStmt(){

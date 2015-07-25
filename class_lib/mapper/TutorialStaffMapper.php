@@ -10,7 +10,7 @@
 namespace class_lib\mapper;
 
 use \class_lib\domain\DomainObject;
-use \class_lib\mapper\collections\StaffCollection;
+use \class_lib\mapper\collections\TutorialStaffCollection;
 
 class TutorialStaffMapper extends EmployeeMapper{
     function __construct() {
@@ -18,7 +18,7 @@ class TutorialStaffMapper extends EmployeeMapper{
     }
 
     function getCollection( array $raw ) {
-        return new StaffCollection( $raw, $this );
+        return new TutorialStaffCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {
@@ -33,6 +33,8 @@ class TutorialStaffMapper extends EmployeeMapper{
         $this->insertStmt()->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
+	    $object->setRank($values[sizeof($values)-1]);
+        $object->markClean();
     }
 
     function doUpdate( DomainObject $object ) {
@@ -40,16 +42,7 @@ class TutorialStaffMapper extends EmployeeMapper{
         $this->updateStmt->execute( $values );
     }
 
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-
-    function selectAllStmt() {
-        return $this->selectStmt;
-    }
-
-    function targetClass()
-    {
+    function targetClass(){
         return "class_lib\\domain\\TutorialStaff";
     }
 }

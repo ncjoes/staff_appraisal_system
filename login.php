@@ -33,8 +33,7 @@ $request_context = class_lib\controller\RequestContext::instance();
         </td>
         <td id="menu_container">
             <ul class="menuBar">
-                <li><a href="?cmd=Default"> RECOVER PASSWORD </a></li>
-                <li><a href="?cmd=Default"> CREATE ACCOUNT </a></li>
+                <li><a href="?cmd=Default"> ABOUT </a></li>
             </ul>
             <ul class="right_button">
                 <li class="right_button"><a href="?">&hellip;</li>

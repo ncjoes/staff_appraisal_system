@@ -7,8 +7,8 @@
  * Time: 11:05 PM
  */
 
-$request = \class_lib\Controller\RequestContext::instance();
-$ranks = $request->getResponseData();
+$requestContext = \class_lib\Controller\RequestContext::instance();
+$ranks = $requestContext->getResponseData();
 ?>
 <style type="text/css">
 	.output_label{
@@ -25,8 +25,8 @@ $ranks = $request->getResponseData();
 	</thead>
 	<tr>
 		<td class="button_row" colspan="3">
-			<p class="<?= $request->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
-				<?= $request->getResponseError(); ?>
+			<p class="<?= $requestContext->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
+				<?= $requestContext->getResponseError(); ?>
 			</p>
 			<a href="?cmd=AddTutorialStaffRank">Add Rank</a>
 		</td>

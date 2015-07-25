@@ -45,6 +45,7 @@ abstract class Collection implements \Iterator {
     }
 
     function add(DomainObject $object ) {
+        //TODO: track and fix bug
         $class = $this->targetClass();
         if ( ! ($object instanceof $class ) ) {
             throw new \Exception("This is a {$class} collection: attempting to add ".get_class($object));

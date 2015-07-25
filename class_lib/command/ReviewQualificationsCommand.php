@@ -45,9 +45,8 @@ class ReviewQualificationsCommand extends AdminCommand{
 
 		    //do appraisal stuff
 		    $staff_id = $obj->getStaffId();
-		    $appraisalSystem = new AppraisalSystem();
 		    DomainObjectWatcher::instance()->performOperations();
-		    $appraisalSystem->review($staff_id);
+		    AppraisalSystem::review($staff_id);
 	    }
 	    $requestContext->setResponseData(array($state,$mapper->findByStatus($state)));
     }

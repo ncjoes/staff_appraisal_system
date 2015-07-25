@@ -62,13 +62,13 @@ class FrontController {
 	        $requestContext->setResponseError($exception->getMessage());
 
         }catch (\PDOException $exception){
-	        /*
+	        ///*
 	        //development mode
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage()."<br/>".$exception->getTraceAsString());
 	        //*/
 
-	        ///*
+	        /*
 	        //deployment mode
 	        $requestContext->setResponseStatus(false);
 	        $requestContext->setResponseError($exception->getMessage());
@@ -76,7 +76,7 @@ class FrontController {
 
         }catch (\Exception $exception){
 	        $requestContext->setResponseStatus(false);
-	        $requestContext->setResponseError($exception->getMessage());
+	        $requestContext->setResponseError($exception->getMessage()."<br/>".$exception->getTraceAsString());
         }
     }
 }
