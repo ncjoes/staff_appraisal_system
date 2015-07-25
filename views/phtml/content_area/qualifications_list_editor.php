@@ -15,9 +15,11 @@ $base_command = "ListQualifications";
 <input type="hidden" value="execute"/>
 <table class="output_table">
     <thead>
-    <th colspan="3" class="output_header1">
-	    <hr/><?= $staff->get_lastname().", ".$staff->get_firstname()." ".$staff->get_othernames() ?> : Qualifications<hr/>
-    </th>
+    <tr>
+        <th colspan="3" class="output_header1">
+	        <hr/><?= $staff->get_lastname().", ".$staff->get_firstname()." ".$staff->get_othernames() ?> : Qualifications<hr/>
+        </th>
+    </tr>
     </thead>
 	<tr>
 		<td class="button_row" colspan="3">

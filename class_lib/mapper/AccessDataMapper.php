@@ -26,7 +26,7 @@ class AccessDataMapper extends Mapper {
     }
 
     function getCollection( array $raw ) {
-        return new collections\StaffCollection( $raw, $this );
+        return null;//new collections\StaffCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {

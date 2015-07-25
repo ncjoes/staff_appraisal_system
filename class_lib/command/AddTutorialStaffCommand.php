@@ -11,7 +11,6 @@ namespace class_lib\command;
 
 use \class_lib\controller;
 use \class_lib\domain;
-use \class_lib\mapper\collections\QualificationCollection;
 use \class_lib\utilities\Date;
 
 class AddTutorialStaffCommand extends AdminCommand{

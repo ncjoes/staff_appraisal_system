@@ -10,7 +10,6 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\utilities\Date;
 
 class UpdateBiographyCommand extends EmployeeCommand{
     protected function doExecute(controller\RequestContext $requestContext){

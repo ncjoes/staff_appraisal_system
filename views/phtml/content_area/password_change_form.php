@@ -21,7 +21,7 @@ $requestContext = \class_lib\controller\RequestContext::instance();
 	</p>
 	<p class="input_row">
 		<label for="new_password">New Password: <span class="required">*</span></label>
-		<input name="new_password" id="password" value="" type="password" required/>
+		<input name="new_password" id="new_password" value="" type="password" required/>
 	</p>
 	<p class="input_row">
 		<label for="confirm_password">Confirm Password: <span class="required">*</span></label>

@@ -42,6 +42,7 @@ abstract class Collection implements \Iterator {
             $this->objects[$num]=$this->mapper->createObject( $this->raw[$num] );
             return $this->objects[$num];
         }
+        return null;
     }
 
     function add(DomainObject $object ) {

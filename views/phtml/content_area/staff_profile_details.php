@@ -16,9 +16,11 @@ $user = $request_context->getUser();
 </p>
 <table class="output_table">
     <thead>
+    <tr>
         <th colspan="2" class="output_header1">
             Profile Details: <?= implode(' ', $user->get_names()) ?><hr/>
         </th>
+    </tr>
     </thead>
     <tr>
         <td colspan="2" class="output_header2">

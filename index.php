@@ -37,7 +37,7 @@ $user = $request_context->getUser();
         <td id="menu_container">
 	        <?php
 	        try{
-		        include("views/phtml/menu_bar/{$request_context->getMenuView()}.php");
+                include("views/phtml/menu_bar/{$request_context->getMenuView()}.php");
 	        }catch(\Exception $e){
 		        print $e->getMessage();
 	        }

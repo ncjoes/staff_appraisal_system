@@ -10,7 +10,6 @@
 namespace class_lib\mapper;
 
 use \class_lib\domain\DomainObject;
-use \class_lib\mapper\collections\EmployeeCollection;
 
 class SystemAdminMapper extends EmployeeMapper{
     function __construct() {
@@ -18,7 +17,7 @@ class SystemAdminMapper extends EmployeeMapper{
     }
 
     function getCollection( array $raw ) {
-        return new StaffCollection( $raw, $this );
+        return null;//new StaffCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {

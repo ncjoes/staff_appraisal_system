@@ -14,13 +14,15 @@ $employees = $requestContext->getResponseData();
 <input type="hidden" value="execute"/>
 <table class="output_table">
 	<thead>
-	<th colspan="6" class="output_header1">
-		<hr/>Employees : Tutorial Staff
-		<p class="<?= $requestContext->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
-			<?= $requestContext->getResponseError(); ?>
-		</p>
-		<hr/>
-	</th>
+	<tr>
+		<th colspan="6" class="output_header1">
+			<hr/>Employees : Tutorial Staff
+			<p class="<?= $requestContext->getResponseStatus()==true ? "success_message" : "error_message"; ?>">
+				<?= $requestContext->getResponseError(); ?>
+			</p>
+			<hr/>
+		</th>
+	</tr>
 	</thead>
 	<tr>
 		<td class="output_header2">SN</td>

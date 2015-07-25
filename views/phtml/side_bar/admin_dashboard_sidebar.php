@@ -7,6 +7,7 @@
  * Time: 2:18 AM
  */
 ?>
+<!--suppress HtmlUnknownTarget -->
 <div class="passport_photo">
 	<img src="views/img/dashboard.jpg" alt="Dashboard" align="middle"/>
 </div>
