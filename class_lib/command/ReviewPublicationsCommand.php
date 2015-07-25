@@ -38,6 +38,7 @@ class ReviewPublicationsCommand extends AdminCommand{
 		            $obj->markPending();
 	            } break;
 	            case "delete":{
+		            $obj->delete();
 		            $obj->markDelete();
 	            } break;
             }
@@ -45,8 +46,8 @@ class ReviewPublicationsCommand extends AdminCommand{
 	        //do appraisal stuff
 	        $staff_id = $obj->getAuthor();
 	        $appraisalSystem = new AppraisalSystem();
-	        $appraisalSystem->review($staff_id);
 	        DomainObjectWatcher::instance()->performOperations();
+	        $appraisalSystem->review($staff_id);
         }
 	    $requestContext->setResponseData(array($state,$mapper->findByStatus($state)));
     }
