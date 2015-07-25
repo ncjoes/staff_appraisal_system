@@ -43,6 +43,42 @@ class TutorialStaff extends Staff{
         $publication->markDelete();
     }
 
+	function getNumOfApprovedPublications(){
+		$num = 0;
+		foreach($this->get_publications() as $publication){
+			$num = $publication->isApproved() ? $num+1 : $num+0;
+		}
+		return $num;
+	}
+
+	function getNumOfApprovedSupervisions(){
+		$num = 0;
+		foreach($this->get_supervisions() as $supervision){
+			$num = $supervision->isApproved() ? $num+1 : $num+0;
+		}
+		return $num;
+	}
+
+	function getNumOfScopusIndexes(){
+		$num = 0;
+		foreach($this->get_publications() as $publication){
+			if($publication->isApproved()){
+				$num = $publication->isScopusIndexed() ? $num+1 : $num+0;
+			}
+		}
+		return $num;
+	}
+
+	function getNumOfThompsonIndexes(){
+		$num = 0;
+		foreach($this->get_publications() as $publication){
+			if($publication->isApproved()){
+				$num = $publication->isThompsonIndexed() ? $num+1 : $num+0;
+			}
+		}
+		return $num;
+	}
+
     function set_supervisions(SupervisionCollection $supervisions){
         foreach($supervisions as $supervision){
             $supervision->setSupervisor($this->get_employeeId());

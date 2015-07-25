@@ -79,23 +79,28 @@ $user = $request_context->getUser();
         <td class="output_value"><?= $user->get_retirement_date()->toStr(); ?></td>
     </tr>
     <tr>
+        <td colspan="2" class="output_header2">
+            <br/>CREDENTIALS
+        </td>
+    </tr>
+    <tr>
         <td class="output_label" valign="top">Qualifications</td>
         <td class="output_value">
-            <?= $user->get_qualifications()->size(); ?> qualification(s)
+            <?= $user->getNumOfApprovedQualifications(); ?> qualification(s)
             <a href="?cmd=ListQualifications"> view all </a>
         </td>
     </tr>
     <tr>
         <td class="output_label" valign="top">Publications</td>
         <td class="output_value">
-            <?= $user->get_publications()->size(); ?> publication(s)
+            <?= $user->getNumOfApprovedPublications(); ?> publication(s)
             <a href="?cmd=ListPublications"> view all </a>
         </td>
     </tr>
     <tr>
         <td class="output_label" valign="top">Supervisions</td>
         <td class="output_value">
-            <?= $user->get_supervisions()->size(); ?> supervisions(s)
+            <?= $user->getNumOfApprovedSupervisions(); ?> supervisions(s)
             <a href="?cmd=ListSupervisions"> view all </a>
         </td>
     </tr>

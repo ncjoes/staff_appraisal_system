@@ -17,7 +17,7 @@ class Qualification extends Credential{
     private $category;
     private $date_obtained;
     private $awarding_institution;
-    private static $types = array("B.Sc","M.Sc","PhD");
+    private static $types = array( 1=>"B.Sc", 2=>"M.Sc", 3=>"PhD" );
 
     function __construct($id=null){
         parent::__construct($id);

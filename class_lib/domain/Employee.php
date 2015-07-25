@@ -55,12 +55,23 @@ abstract class Employee extends Person{
         return $this->retirement_date;
     }
 
+	function getYearsOfService(){
+		$currentDateObj = new utilities\Date();
+		$currentDate = $currentDateObj->get_date_int();
+		$employmentDate = $this->get_employment_date()->get_date_int();
+		$timeOfService = $currentDate - $employmentDate;
+		$yearsOfService = (int)( $timeOfService / (60*60*24*365) );
+
+		return $yearsOfService;
+	}
+
     function set_qualifications(QualificationCollection $qualifications){
         foreach($qualifications as $qualification){
             $qualification->setStaffId($this->employeeId);
         }
         $this->qualifications = $qualifications;
     }
+
     function get_qualifications(){
         if(!isset($this->qualifications)){
             $mapper = MapperRegistry::getMapper("Qualification");
@@ -68,17 +79,38 @@ abstract class Employee extends Person{
         }
         return $this->qualifications;
     }
+
     function add_qualification(Qualification $qualification){
         $qualification->setStaffId($this);
 	    $this->get_qualifications()->add($qualification);
     }
+
     function remove_qualification(Qualification $qualification){
         $this->get_qualifications()->remove($qualification);
         $qualification->markDelete();
     }
 
-    function setRank($rank){
+    function hasQualification($qualificationCategory){
+		foreach($this->get_qualifications() as $qualification){
+			if($qualification->isApproved() and $qualification->getCategory() == $qualificationCategory){
+				return true;
+			}
+		}
+	    return false;
+    }
+
+	function getNumOfApprovedQualifications(){
+		$num = 0;
+		foreach($this->get_qualifications() as $qualification){
+			$num = $qualification->isApproved() ? $num+1 : $num+0;
+		}
+		return $num;
+	}
+
+	function setRank($rank){
         $this->rank = $rank;
+	    $this->markDirty();
+	    return $this;
     }
     function getRank(){
         if(!is_object($this->rank)){

@@ -76,6 +76,11 @@ $user = $request_context->getUser();
         <td class="output_value"><?= $user->get_retirement_date()->toStr(); ?></td>
     </tr>
     <tr>
+        <td colspan="2" class="output_header2">
+            <br/>CREDENTIALS
+        </td>
+    </tr>
+    <tr>
         <td class="output_label" valign="top">Qualifications</td>
         <td class="output_value">
             <?= $user->get_qualifications()->size(); ?> qualification(s)

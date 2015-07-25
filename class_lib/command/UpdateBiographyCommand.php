@@ -16,14 +16,16 @@ class UpdateBiographyCommand extends EmployeeCommand{
     protected function doExecute(controller\RequestContext $requestContext){
 	    $requestContext->addContentView("staff_biography_update_form");
         if( $requestContext->isExecutable() ){ //carry out command execution
+            $staff = $requestContext->getUser();
 	        $string = $requestContext->getField("biography");
             if( strlen($string) >= 100 ){
                 //do object manipulation
-                $staff = $requestContext->getUser();
 	            $staff->setBiography($string);
                 $requestContext->setResponseStatus(true);
                 $requestContext->setResponseError("Update successful");
             }else{
+                $staff->setBiography($string);
+                $staff->markClean();
                 $requestContext->setResponseStatus(false);
                 $requestContext->setResponseError("text must be at least 100 characters long");
             }

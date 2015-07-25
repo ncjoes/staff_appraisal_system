@@ -21,7 +21,7 @@ class AccessData extends DomainObject{
         parent::__construct($id);
     }
 
-    public function set_username($userID){
+    public function setUsername($userID){
         $this->username = $userID;
         $this->markDirty();
         return $this;
@@ -30,7 +30,7 @@ class AccessData extends DomainObject{
         return $this->username;
     }
 
-    public function set_password($password){
+    public function setPassword($password){
         $this->password = $password;
         $this->markDirty();
         return $this;

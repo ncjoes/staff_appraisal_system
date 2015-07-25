@@ -21,7 +21,7 @@ class ReviewQualificationsCommand extends AdminCommand{
 	    $action = $requestContext->fieldExists("action");
 	    $id = $requestContext->fieldExists("id");
 	    $state = $requestContext->fieldExists("state");
-	    $state = $state != false ? $state : "Pending";
+	    $state = ($state != false) ? $state : "Pending";
 	    $mapper = MapperRegistry::getMapper("Qualification");
 	    $obj = $mapper->find($id);
 	    if($action and $id and is_object($obj)){

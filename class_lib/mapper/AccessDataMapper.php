@@ -8,6 +8,7 @@
  */
 
 namespace class_lib\mapper;
+
 use \class_lib\domain;
 use \class_lib\mapper\collections;
 
@@ -31,8 +32,8 @@ class AccessDataMapper extends Mapper {
     protected function doCreateObject( array $array ) {
         $obj = new domain\AccessData();
         $obj->setId($array['id']);
-        $obj->set_username($array['user_id']);
-        $obj->set_password($array['password']);
+        $obj->setUsername($array['user_id']);
+        $obj->setPassword($array['password']);
         $obj->setUserType($array['user_type']);
 
         return $obj;
