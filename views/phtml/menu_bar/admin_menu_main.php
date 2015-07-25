@@ -9,7 +9,7 @@
 ?>
 <ul class="menuBar">
 	<li><a href="?cmd=ListStaff"> STAFF LIST </a></li>
-	<li><a href="?cmd=AdminDashboard"> UPDATE REVIEWS </a></li>
+	<li><a href="?cmd=ReviewQualifications"> UPDATE REVIEWS </a></li>
 	<li><a href="?cmd=ListTutorialStaffRanks"> RANK SETTINGS </a></li>
 	<li><a href="?cmd=AdminProfileDetails"> MY PROFILE </a></li>
 </ul>
