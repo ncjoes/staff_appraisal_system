@@ -10,7 +10,7 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\Publication;
 
 class ListPublicationsCommand extends StaffCommand{
     protected function doExecute(controller\RequestContext $requestContext){
@@ -26,14 +26,14 @@ class ListPublicationsCommand extends StaffCommand{
                     $subCommand->execute($requestContext);
                 } break;
                 case "Delete":{
-                    $mapper = MapperRegistry::getMapper("Publication");
+                    $mapper = Publication::getMapper("Publication");
                     $publication_obj = $mapper->find($id);
                     if(is_object($publication_obj)){
                         $publication_obj->delete();
                     }
                 } break;
                 case "undoDelete":{
-                    $mapper = MapperRegistry::getMapper("Publication");
+                    $mapper = Publication::getMapper("Publication");
                     $publication_obj = $mapper->find($id);
                     if(is_object($publication_obj)){
                         $publication_obj->markPending();

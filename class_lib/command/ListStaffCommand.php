@@ -10,7 +10,7 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use \class_lib\mapper\MapperRegistry;
+use class_lib\domain\Staff;
 
 class ListStaffCommand extends AdminCommand{
 	protected function doExecute(controller\RequestContext $requestContext){
@@ -18,7 +18,7 @@ class ListStaffCommand extends AdminCommand{
 		$requestContext->setSidebarView("admin_staff_list_sidebar");
 		$requestContext->addContentView("tutorial_staff_list_editor");
 
-		$mapper = MapperRegistry::getMapper("TutorialStaff");
+		$mapper = Staff::getMapper("TutorialStaff");
 		$requestContext->setResponseData($mapper->findAll());
 	}
 }

@@ -10,7 +10,7 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use \class_lib\mapper\MapperRegistry;
+use class_lib\domain\TutorialStaff;
 
 class ListTutorialStaffRanksCommand extends RankSettingsCommand{
 	protected function doExecute(controller\RequestContext $requestContext){
@@ -18,7 +18,7 @@ class ListTutorialStaffRanksCommand extends RankSettingsCommand{
 
 		$requestContext->addContentView("tutorial_staff_ranks_list_editor");
 
-		$mapper = MapperRegistry::getMapper("TutorialStaffRank");
+		$mapper = TutorialStaff::getMapper("TutorialStaffRank");
 		$requestContext->setResponseData($mapper->findAll());
 	}
 }

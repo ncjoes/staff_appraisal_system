@@ -10,7 +10,7 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\Supervision;
 
 class ListSupervisionsCommand extends StaffCommand{
     protected function doExecute(controller\RequestContext $requestContext){
@@ -26,14 +26,14 @@ class ListSupervisionsCommand extends StaffCommand{
                     $subCommand->execute($requestContext);
                 } break;
                 case "Delete":{
-                    $mapper = MapperRegistry::getMapper("Supervision");
+                    $mapper = Supervision::getMapper("Supervision");
                     $supervision_obj = $mapper->find($id);
                     if(is_object($supervision_obj)){
                         $supervision_obj->delete();
                     }
                 } break;
                 case "undoDelete":{
-                    $mapper = MapperRegistry::getMapper("Supervision");
+                    $mapper = Supervision::getMapper("Supervision");
                     $supervision_obj = $mapper->find($id);
                     if(is_object($supervision_obj)){
                         $supervision_obj->markPending();

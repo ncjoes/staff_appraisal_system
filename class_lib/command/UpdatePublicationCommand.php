@@ -10,13 +10,13 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\Publication;
 
 class UpdatePublicationCommand extends StaffCommand{
     protected function doExecute(controller\RequestContext $requestContext){
 
         $publication_id = $requestContext->getField("publication_id");
-        $mapper = MapperRegistry::getMapper("Publication");
+        $mapper = Publication::getMapper("Publication");
         $publication = $mapper->find($publication_id);
         if(is_object($publication)){
             $requestContext->resetContentViews();

@@ -10,14 +10,14 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\TutorialStaffRank;
 
 class UpdateTutorialStaffRankCommand extends RankSettingsCommand{
 	protected function doExecute(controller\RequestContext $requestContext){
 		parent::doExecute($requestContext);
 
 		$id = $requestContext->getField("id");
-		$mapper = MapperRegistry::getMapper("TutorialStaffRank");
+		$mapper = TutorialStaffRank::getMapper("TutorialStaffRank");
 		$rank = $mapper->find($id);
 
 		if(is_object($rank)){

@@ -10,13 +10,13 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\Supervision;
 
 class UpdateSupervisionCommand extends StaffCommand{
     protected function doExecute(controller\RequestContext $requestContext){
 
         $supervision_id = $requestContext->getField("supervision_id");
-        $mapper = MapperRegistry::getMapper("Supervision");
+        $mapper = Supervision::getMapper("Supervision");
         $supervision = $mapper->find($supervision_id);
         if(is_object($supervision)){
             $requestContext->resetContentViews();

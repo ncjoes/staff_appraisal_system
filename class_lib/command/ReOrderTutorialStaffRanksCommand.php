@@ -10,14 +10,14 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\TutorialStaffRank;
 
 class ReOrderTutorialStaffRanksCommand extends RankSettingsCommand{
 	protected function doExecute(controller\RequestContext $requestContext){
 		parent::doExecute($requestContext);
 
 		$requestContext->addContentView("tutorial_staff_ranks_order_editor");
-		$mapper = MapperRegistry::getMapper("TutorialStaffRank");
+		$mapper = TutorialStaffRank::getMapper("TutorialStaffRank");
 		$allRanks = $mapper->findAll();
 
 		if( $requestContext->isExecutable() ) { //carry out command execution

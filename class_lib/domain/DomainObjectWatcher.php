@@ -69,6 +69,7 @@ class DomainObjectWatcher {
     }
 
     function performOperations() {
+        //START TRANSACTION
         foreach ( $this->delete as $key=>$obj ) {
             $obj->mapper()->del( $obj );
             unset($this->all[$key]);
@@ -81,5 +82,6 @@ class DomainObjectWatcher {
         }
         $this->dirty = array();
         $this->new = array();
+        //END TRANSACTION
     }
 }

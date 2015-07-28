@@ -12,7 +12,7 @@ namespace class_lib\command;
 use \class_lib\controller;
 use \class_lib\domain\AppraisalSystem;
 use class_lib\domain\DomainObjectWatcher;
-use \class_lib\mapper\MapperRegistry;
+use class_lib\domain\Supervision;
 
 class ReviewSupervisionsCommand extends AdminCommand{
     protected function doExecute(controller\RequestContext $requestContext){
@@ -22,7 +22,7 @@ class ReviewSupervisionsCommand extends AdminCommand{
         $id = $requestContext->fieldExists("id");
         $state = $requestContext->fieldExists("state");
         $state = ($state != false) ? $state : "Pending";
-        $mapper = MapperRegistry::getMapper("Supervision");
+        $mapper = Supervision::getMapper("Supervision");
         $obj = $mapper->find($id);
         if($action and $id and is_object($obj)){
             //do object manipulation

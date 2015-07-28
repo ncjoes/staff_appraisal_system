@@ -10,7 +10,7 @@
 namespace class_lib\command;
 
 use \class_lib\controller;
-use class_lib\mapper\MapperRegistry;
+use class_lib\domain\Qualification;
 
 class ListQualificationsCommand extends EmployeeCommand{
     protected function doExecute(controller\RequestContext $requestContext){
@@ -26,14 +26,14 @@ class ListQualificationsCommand extends EmployeeCommand{
 			        $subCommand->execute($requestContext);
 		        } break;
 		        case "Delete":{
-			        $mapper = MapperRegistry::getMapper("Qualification");
+			        $mapper = Qualification::getMapper("Qualification");
 			        $qualification_obj = $mapper->find($id);
 			        if(is_object($qualification_obj)){
 				        $qualification_obj->delete();
 			        }
 		        } break;
 		        case "undoDelete":{
-			        $mapper = MapperRegistry::getMapper("Qualification");
+			        $mapper = Qualification::getMapper("Qualification");
 			        $qualification_obj = $mapper->find($id);
 			        if(is_object($qualification_obj)){
 				        $qualification_obj->markPending();
