@@ -27,7 +27,7 @@ class FrontController {
         $applicationHelper->init();
     }
 
-	private function r_run(RequestContext $requestContext, $cmd_resolver, $start=0){
+	private function r_run(RequestContext $requestContext, Command\CommandResolver $cmd_resolver, $start=0){
 		//recursively run commands in a dynamic array
 		$cmd_chain = $requestContext->getCommandChain();
 		if(isset($cmd_chain[$start])){

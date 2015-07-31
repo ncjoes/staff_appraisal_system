@@ -24,7 +24,7 @@ class CommandResolver {
         if ( ! file_exists( $file ) ){
             throw new Exceptions\CommandNotFoundException( "could not find file: '$file'" );
         }
-        $class = "class_lib\\command\\{$class_name}";
+        $class = self::$dir."\\{$class_name}";
         if ( ! class_exists( $class ) ){
             throw new Exceptions\CommandNotFoundException( "could not find class: '$class'" );
         }

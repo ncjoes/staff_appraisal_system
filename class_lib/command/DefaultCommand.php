@@ -18,7 +18,7 @@ class DefaultCommand extends Command
 		$this->doExecute($requestContext);
 	}
 
-	function doExecute(controller\RequestContext $requestContext){
+	protected function doExecute(controller\RequestContext $requestContext){
 		$session = Session::instance();
 		$user_type_path = explode("\\",$session->getUserType());
 		$user_type = $user_type_path[sizeof($user_type_path)-1];

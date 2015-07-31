@@ -195,7 +195,7 @@ class RequestContext {
 	    if(!is_object($this->request_user)){
 		    $session = utilities\Session::instance();
 		    $user_obj_path = $session->getUserType();
-		    $mapper = MapperRegistry::getMapper($user_obj_path);
+		    $mapper = domain\Employee::getMapper($user_obj_path);
 		    $user_obj = $mapper->find($session->getUser());
 		    $this->setUser($user_obj);
 	    }
