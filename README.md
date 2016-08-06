@@ -11,5 +11,4 @@
 
 <h3>Credits:</h3>
     i. Nwobodo Chukwuemeka Joseph
-        <https://gitlab.com/jcnwobodo>
-        <https://github.com/joseph-phoenixlabs>
+        <https://github.com/jcnwobodo>
